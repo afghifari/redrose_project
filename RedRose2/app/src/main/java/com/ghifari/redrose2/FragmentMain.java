@@ -39,18 +39,8 @@ public class FragmentMain extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        View rootView;
-
-//        ImageView imageView = (ImageView) rootView.findViewById(R.id.textImage);
-        int page = getArguments().getInt(ARG_SECTION_NUMBER);
-        if (page == 2)
-            rootView = inflater.inflate(
+        View rootView = inflater.inflate(
                     R.layout.fragment_main, container, false);
-        else
-            rootView = inflater.inflate(
-                    R.layout.activity_pohon_status, container, false);
-
         // Inflate the layout for this fragment
         return rootView;
     }
