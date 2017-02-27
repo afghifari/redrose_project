@@ -4,10 +4,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +18,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.io.ByteArrayOutputStream;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener{
 
@@ -79,11 +84,19 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
-        Button b_pohon = (Button) findViewById(R.id.button_main_pohon);
+        Button b_capture = (Button) findViewById(R.id.button_main_capture);
+        b_capture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ScreenShot();
+            }
+        });
+
+        Button b_pohon = (Button) findViewById(R.id.b_main_pohon);
         b_pohon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent_Goal = new Intent(MainActivity.this, PohonStatus.class);
+                Intent intent_Goal = new Intent(MainActivity.this,PohonStatus.class);
                 MainActivity.this.startActivity(intent_Goal);
                 //startActivity(intent_Goal);
             }
@@ -123,5 +136,44 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
+    }
+
+    public void ScreenShot()
+    {
+        View rootView = getWindow().getDecorView().findViewById(android.R.id.content);
+        Log.v("send intent", "should work");
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_STREAM, getScreenShot(rootView));
+        sendIntent.setType("image/bitmap");
+        MainActivity.this.startActivity(Intent.createChooser(sendIntent, "dang son"));
+    }
+
+    public Uri getScreenShot(View view) {
+        View screenView = view.getRootView();
+        screenView.setDrawingCacheEnabled(true);
+        Bitmap bitmap = Bitmap.createBitmap(screenView.getDrawingCache());
+        screenView.setDrawingCacheEnabled(false);
+        Context context = MainActivity.this;
+        return getImageUri(context, scaleDownBitmap(bitmap, 100, context));
+    }
+
+    public static Bitmap scaleDownBitmap(Bitmap photo, int newHeight, Context context) {
+
+        final float densityMultiplier = context.getResources().getDisplayMetrics().density;
+
+        int h= (int) (newHeight*densityMultiplier);
+        int w= (int) (h * photo.getWidth()/((double) photo.getHeight()));
+
+        photo=Bitmap.createScaledBitmap(photo, w, h, true);
+
+        return photo;
+    }
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
     }
 }
