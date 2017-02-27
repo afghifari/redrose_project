@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.ghifari.redrose2.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <TextView
+        android:text="Current Situation"
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/page_title"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/sunlight"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/image_sunlight"
+        android:layout_below="@+id/page_title"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/temperature"
+        android:layout_marginTop="15dp"
+        android:id="@+id/image_temperature"
+        android:layout_below="@+id/image_sunlight"
+        android:layout_alignStart="@+id/image_sunlight" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/humidity"
+        android:layout_marginTop="15dp"
+        android:id="@+id/image_humidity"
+        android:layout_below="@+id/image_temperature"
+        android:layout_alignStart="@+id/image_temperature" />
+
+    <TextView
+        android:text="Luminousity"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_luminousity"
+        android:gravity="center"
+        android:layout_alignTop="@+id/image_sunlight"
+        android:layout_toEndOf="@+id/image_sunlight"
+        android:layout_above="@+id/image_temperature" />
+
+    <TextView
+        android:text="Temperature"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_temperature"
+        android:gravity="center"
+        android:layout_alignTop="@+id/image_temperature"
+        android:layout_toEndOf="@+id/image_temperature"
+        android:layout_above="@+id/image_humidity" />
+
+    <TextView
+        android:text="Humidity"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_humidity"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/appbar_padding_top"
+        android:layout_alignTop="@id/image_humidity"
+        android:layout_toEndOf="@id/image_humidity" />
+
+    <TextView
+        android:text="lala"
+        android:textSize="30sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:id="@+id/luminousity"
+        android:gravity="right"
+        android:layout_alignTop="@+id/image_sunlight"
+        android:layout_alignBottom="@+id/image_sunlight" />
+
+    <TextView
+        android:text="lala"
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/image_humidity"
+        android:layout_alignEnd="@+id/luminousity"
+        android:id="@+id/temperature"
+        android:gravity="right"
+        android:layout_alignTop="@+id/image_temperature"
+        android:layout_alignBottom="@+id/image_temperature"/>
+
+    <TextView
+        android:text="lala"
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/framelayout1"
+        android:layout_alignEnd="@+id/temperature"
+        android:id="@+id/humidity"
+        android:gravity="right"
+        android:layout_alignTop="@+id/image_humidity"
+        android:layout_alignBottom="@+id/image_humidity"/>
+
+    <Button
+        android:text="Sign in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_main_signin"
+        android:layout_below="@+id/text_humidity"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="@dimen/padding_top_button"/>
+
+    <Button
+        android:text="Capture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_main_pohon"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/text_humidity"
+        android:layout_toRightOf="@+id/button_main_signin"
+        android:layout_marginTop="@dimen/padding_top_button"/>
+
+    <android.support.v4.view.ViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/pagerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/button_main_signin"
+        android:background="@android:color/holo_green_light"
+        />
+
+    </RelativeLayout>
+
+</LinearLayout>

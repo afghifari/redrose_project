@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "477486752089",
+    "firebase_url": "https://redrose2-c45df.firebaseio.com",
+    "project_id": "redrose2-c45df",
+    "storage_bucket": "redrose2-c45df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477486752089:android:ba7c0460a48941a2",
+        "android_client_info": {
+          "package_name": "com.ghifari.redrose2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "477486752089-bs36g8sevnu74kelb2osrjrengblik7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW45Id_I7p_RHUFjqFltG4EmNroL9nj0U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
