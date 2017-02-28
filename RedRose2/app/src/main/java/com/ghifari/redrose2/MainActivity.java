@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -31,7 +32,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
      */
     private ViewPager mViewPager;
 
+    private static TextView textview;
+
+    private String textTemp;
+
+    private static String saveText;
+
     SensorManager mSensorManager;
+
     Sensor mLuminousity;
 
     TextView t_luminousity;
@@ -43,19 +51,26 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     int h;
 
     private BroadcastReceiver activityReceiver = new BroadcastReceiver() {
+
+
         @Override
         public void onReceive(Context context, Intent intent) {
-            TextView textview = (TextView) findViewById(R.id.textNotification);
-            String textTemp = (String) textview.getText();
+            textview = (TextView) findViewById(R.id.textNotification);
+            textTemp = (String) textview.getText();
             Bundle bundle = intent.getBundleExtra("msg");
-            if (notifCount < 3) {
-                textview.setText((notifCount+1) + ". " +
-                                textTemp + "\n" +bundle.getString("msgBody"));
+
+            if (notifCount == 0) {
+                textview.setText((notifCount+1) + ". " + bundle.getString("msgBody"));
+                notifCount++;
+            } else if (notifCount > 0 && notifCount < 10) {
+                textview.setText(textTemp + "\n" + (notifCount+1) + ". "
+                                + bundle.getString("msgBody"));
                 notifCount++;
             } else {
                 textview.setText((notifCount+1) + ". " + bundle.getString("msgBody"));
                 notifCount = 0;
             }
+            saveText = (String) textview.getText();
         }
     };
 
@@ -68,10 +83,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mViewPager = (ViewPager) findViewById(R.id.pagerview);
         mViewPager.setAdapter(msectionsPagerAdapter);
 
-        notifCount = 0;
+        setNotificationCount(0);
 
         IntentFilter intentFilter = new IntentFilter("ACTION_STRING_ACTIVITY");
-            registerReceiver(activityReceiver, intentFilter);
+        registerReceiver(activityReceiver, intentFilter);
 
 
         Button b_signin = (Button) findViewById(R.id.button_main_signin);
@@ -102,6 +117,19 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
+        Button b_notif = (Button) findViewById(R.id.b_main_notif);
+        b_notif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent_Goal = new Intent(MainActivity.this,Notification.class);
+                MainActivity.this.startActivity(intent_Goal);
+                Intent myintent = new Intent(getBaseContext(), Notification.class);
+                myintent.putExtra("MESSAGE_NOTIFICATION", saveText);
+                startActivity(myintent);
+                //startActivity(intent_Goal);
+            }
+        });
+
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mLuminousity = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
@@ -124,13 +152,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
+    public void setNotificationCount(int num) {
+        notifCount = num;
+    }
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        Log.v("sensor", "changed");
+       // Log.v("sensor", "changed");
         l = (int)sensorEvent.values[0];
         t_luminousity.setText(l + " cd");
-        Log.v("sval", String.valueOf(sensorEvent.values[0]));
+        //Log.v("sval", String.valueOf(sensorEvent.values[0]));
     }
 
     @Override

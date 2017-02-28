@@ -121,7 +121,7 @@
     <LinearLayout
         android:id="@+id/layout_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/image_humidity">
 
         <Button
@@ -148,23 +148,23 @@
             android:layout_marginTop="@dimen/padding_top_button"
             android:id="@+id/b_main_pohon" />
 
+        <Button
+            android:text="Notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/padding_top_button"
+            android:id="@+id/b_main_notif" />
+
     </LinearLayout>
 
     <android.support.v4.view.ViewPager
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/pagerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/layout_button"
-        android:background="@android:color/holo_green_light"
-        />
-
-    <Button
-        android:text=""
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:id="@+id/b_main_notif"
-        android:layout_below="@id/pagerview"/>
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/layout_button"
+        />
 
 </RelativeLayout>
