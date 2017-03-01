@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "477486752089-8js82ep30mocl4btaft3338e9scqb4qa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ghifari.redrose2",
+            "certificate_hash": "86c87b0e9d83b6f874e5c1e6cd6767417289fc23"
+          }
+        },
+        {
+          "client_id": "477486752089-earcl7jjm7522v2kgidolm7ka96vs0d8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ghifari.redrose2",
+            "certificate_hash": "2808c2f992bc686ef5664b6470a287db3de76964"
+          }
+        },
+        {
           "client_id": "477486752089-bs36g8sevnu74kelb2osrjrengblik7i.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +45,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "477486752089-bs36g8sevnu74kelb2osrjrengblik7i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

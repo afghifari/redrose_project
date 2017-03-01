@@ -20,6 +20,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.io.ByteArrayOutputStream;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener{
@@ -76,6 +78,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(((MyApplication)getApplication()).getmAuth() == null)
+        {
+            ((MyApplication)getApplication()).setmAuth(FirebaseAuth.getInstance());
+
+            if(((MyApplication)getApplication()).getmAuth().getCurrentUser() == null) {
+                Intent intent_Goal = new Intent(MainActivity.this, LoginActivity.class);
+                MainActivity.this.startActivity(intent_Goal);
+            }
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -90,14 +102,33 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
         Button b_signin = (Button) findViewById(R.id.button_main_signin);
-        b_signin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent_Goal = new Intent(MainActivity.this, LoginActivity.class);
-                MainActivity.this.startActivity(intent_Goal);
-                //startActivity(intent_Goal);
-            }
-        });
+        //ubah tulisan jadi signout
+        if(((MyApplication)getApplication()).getmAuth() != null)
+        {
+            b_signin.setText("sign out");
+            b_signin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((MyApplication)getApplication()).getmAuth().signOut();
+                    Intent intent_Goal = new Intent(MainActivity.this, LoginActivity.class);
+                    MainActivity.this.startActivity(intent_Goal);
+                    //startActivity(intent_Goal);
+                }
+            });
+        }
+        else
+        {
+            b_signin.setText("sign in");
+            b_signin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent_Goal = new Intent(MainActivity.this, LoginActivity.class);
+                    MainActivity.this.startActivity(intent_Goal);
+                    //startActivity(intent_Goal);
+                }
+            });
+        }
+
 
         Button b_capture = (Button) findViewById(R.id.button_main_capture);
         b_capture.setOnClickListener(new View.OnClickListener() {
