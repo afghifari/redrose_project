@@ -16,7 +16,7 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/editText_Username"
-        android:hint="@string/prompt_username"
+        android:hint="Email"
         android:background="@drawable/back"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
