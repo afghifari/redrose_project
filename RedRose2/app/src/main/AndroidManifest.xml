@@ -57,7 +57,8 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".PohonStatus" />
+        <activity android:name=".PohonStatus"
+            android:configChanges="orientation|screenSize"/>
 
         <service
             android:name=".NatureBackgroundService"
