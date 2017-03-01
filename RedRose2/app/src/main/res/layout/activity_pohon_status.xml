@@ -104,4 +104,12 @@
         android:layout_marginLeft="190dp"
         android:id="@+id/watering_can" />
 
+    <Button
+        android:text="Tanam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/b_pohon_siram"
+        android:layout_alignStart="@+id/textView4"
+        android:id="@+id/button_pohon_tanam" />
+
 </RelativeLayout>

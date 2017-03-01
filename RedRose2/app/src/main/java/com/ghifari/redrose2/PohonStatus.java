@@ -30,6 +30,7 @@ public class PohonStatus extends AppCompatActivity{
         t_nutrition = (TextView) findViewById(R.id.t_pohon_nutrition);
         t_height = (TextView) findViewById(R.id.t_pohon_height);
         Button b_siram = (Button)findViewById(R.id.b_pohon_siram);
+        Button b_tanam = (Button)findViewById(R.id.button_pohon_tanam);
 
         b_siram.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +39,16 @@ public class PohonStatus extends AppCompatActivity{
                 t_nutrition = (TextView) findViewById(R.id.t_pohon_nutrition);
             }
         });
+
+        b_tanam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent_Goal = new Intent(PohonStatus.this, PlantActivity.class);
+                PohonStatus.this.startActivity(intent_Goal);
+            }
+        });
+
+
 
         if(myPohon == null) {
             mPrefs = getSharedPreferences("geloman", Context.MODE_PRIVATE);
